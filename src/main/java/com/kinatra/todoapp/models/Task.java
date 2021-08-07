@@ -1,7 +1,7 @@
 package com.kinatra.todoapp.models;
 
 
-
+//POJO Task
 public class Task {
     private final long id;
     private String description;
@@ -21,7 +21,7 @@ public class Task {
         return description;
     }
 
-    public boolean isDone() {
+    public boolean getisDone() {
         return isDone;
     }
 
@@ -29,16 +29,16 @@ public class Task {
         this.description = description;
     }
 
-    public void setDone(boolean done) {
+    public void setisDone(boolean done) {
         isDone = done;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "id:" + id +
-                ", description:\"" + description + '\"' +
-                ", isDone:" + isDone +
+                "\"id\":" + id +
+                ", \"description\":\"" + description + '\"' +
+                ", \"isDone\":" + isDone +
                 '}';
     }
 }

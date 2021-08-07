@@ -32,16 +32,32 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void createTask(Task t) {
+        taskList.stream().
+                filter(task -> task.getId() == t.getId()).
+                findAny().orElseGet(()-> {
+                    taskList.add(t);
+                    return t;
+                });
 
     }
 
     @Override
     public void updateTask(Task t) {
-
+        //change values if present task
+        taskList.stream().
+                filter(task -> task.getId() == t.getId()).
+                findFirst().ifPresent(task -> {
+                    task.setDescription(t.getDescription());
+                    task.setisDone(t.getisDone());
+        });
     }
 
     @Override
     public void deleteTask(long id) {
-
+        //delete task if present
+        taskList.stream().
+                filter(task -> task.getId() == id).findFirst().ifPresent(task->{
+                    taskList.remove(task);
+        });
     }
 }
