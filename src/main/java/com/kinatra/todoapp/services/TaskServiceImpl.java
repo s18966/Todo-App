@@ -3,18 +3,31 @@ package com.kinatra.todoapp.services;
 import com.kinatra.todoapp.models.Task;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class TaskServiceImpl implements TaskService {
+    private List<Task> taskList;
+    public TaskServiceImpl(){
+        this.taskList = new ArrayList<>(Arrays.asList(
+                new Task(1, "Need to finish project ASAP!", false),
+                new Task(2, "Go to shopping with wife", false),
+                new Task(3, "Go to bar with friends", true)
+        ));
+    }
     @Override
     public List<Task> getAll() {
-        return null;
+        return this.taskList;
     }
 
     @Override
     public Task getTask(long id) {
-        return null;
+        return taskList.stream().
+                filter(t -> t.getId() == id).
+                findFirst().
+                orElseThrow(()-> new IllegalStateException("Task with id " + id + " does not exist"));
     }
 
     @Override

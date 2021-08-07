@@ -32,4 +32,13 @@ public class Task {
     public void setDone(boolean done) {
         isDone = done;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id:" + id +
+                ", description:\"" + description + '\"' +
+                ", isDone:" + isDone +
+                '}';
+    }
 }
