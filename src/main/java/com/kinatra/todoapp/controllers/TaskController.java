@@ -37,22 +37,25 @@ public class TaskController {
 
     }
     @PostMapping
-    public ResponseEntity<String> addTask(@RequestBody Task t){
+    public ResponseEntity<List<Task>> addTask(@RequestBody Task t){
         //create task
         service.createTask(t);
-        return new ResponseEntity<>(HttpStatus.OK);
+        //redirect
+        return ResponseEntity.status(HttpStatus.OK).body(getTasks());
     }
 
     @PutMapping
-    public ResponseEntity<String> modifyTask(@RequestBody Task t){
+    public ResponseEntity<List<Task>> modifyTask(@RequestBody Task t){
         //update task
         service.updateTask(t);
-        return new ResponseEntity<>(HttpStatus.OK);
+        //redirect
+        return ResponseEntity.status(HttpStatus.OK).body(getTasks());
     }
     @DeleteMapping(value = "{taskId}")
-    public ResponseEntity<String> deleteTask(@PathVariable long taskId){
+    public ResponseEntity<List<Task>> deleteTask(@PathVariable long taskId){
         //delete task
         service.deleteTask(taskId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        //redirect
+        return ResponseEntity.status(HttpStatus.OK).body(getTasks());
     }
 }
