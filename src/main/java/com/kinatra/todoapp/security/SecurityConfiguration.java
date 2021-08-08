@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().
                 authorizeRequests().
-                antMatchers("/", "/register**", "/login").
+                antMatchers("/", "/login**", "/register**").
                 permitAll().
                 and().
                 addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
