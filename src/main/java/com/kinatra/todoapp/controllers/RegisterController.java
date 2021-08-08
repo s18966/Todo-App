@@ -23,7 +23,7 @@ public class RegisterController {
     public ResponseEntity<String> register(@RequestBody UserLoginPass user){
         try {
             //perform registration
-            this.userService.registerUser(user.getLogin(), user.getPassword());
+            this.userService.saveUser(user.getLogin(), user.getPassword());
             return ResponseEntity.status(HttpStatus.CREATED).body("{\"message\":\"successful\"}");
         }catch (UserExistsException e){
             //if user with given name exists
